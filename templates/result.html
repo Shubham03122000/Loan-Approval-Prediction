@@ -1,1 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body style="text-align:center;padding-top:120px;background-color:#4040bf">
+    {%if data == 1%}
+    <div style="background-color:#4db8ff;padding:30px">
+        <h1><b>Congratulations!!!</b></h1>
+        <h2>Your Loan Application will get Approved</h2>
+        <img src="static/mysite/images/approved.jpg">
+    </div>
+    {%else%}
+    <div style="background-color:#4db8ff;padding:30px">
+        <h1>Sorry!!!</h1>
+        <h1>Unfortunately Your Loan Application will be Rejected</h1>
+        <img src="static/mysite/images/rejected.jpg" style="height:200px;width:400px">
+    </div>
+    {%endif%}
 
+</body>
+</html>
