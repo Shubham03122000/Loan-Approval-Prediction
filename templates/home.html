@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="C:\Users\abc\PycharmProjects\djangoCourse\mysite\static\home.css">
+    <link rel="stylesheet" type="text/css" href="test.css">
+    <title>Loan Approval Prediction</title>
+</head>
+<body>
+<nav class="navbar navbar-default">
+  <div class="container-fluid"  style="background-color:#4040bf;color:white;position:fixed;overflow: hidden;top: 0;width: 100%;">
+    <div class="navbar-header" style="margin-left:800px;">
+        <ul class="nav navbar-nav">
+            <li><a style="color:white;" href=http://127.0.0.1:5000/><b>HOME</b></a></li>
+            <li><a style="color:white;" href="#predict"><b>PREDICT</b></a></li>
+            <li><a style="color:white;" href="Report"><b>VISUALISE</b></a></li>
+            <li><a style="color:white;" href="#insights"><b>INSIGHTS</b></a></li>
+            <li><a style="color:white;" href="#contact"><b>CONTACT</b></a></li>
+        </ul>
+    </div>
+  </div>
+</nav>
+
+<form method="POST", action="{{url_for('home')}}" style="align:center;padding-left:250px">
+    <h2 style="padding-left:400px;"><b>Predict Loan Approval</b></h2><br>
+    <label for="Gender_MF" style="padding-left:80px;">Gender :</label>
+    <select name="Gender" id="Gender_MF" style="height:30px;width:300px;margin-left:25px;margin-right:115px;">
+        <option value="1">Male</option>
+        <option value="0">Female</option>
+    </select>
+
+    <label for="Marrage_Status">Married : </label>
+    <select name="Married" id="Marrage_Status" style="height:30px;width:300px;margin-left:25px;">
+        <option value="1">Yes</option>
+        <option value="0">No</option>
+    </select><br><br>
+
+    <label for="Dependents_no" style="padding-left:50px;">Dependents :</label>
+    <select name="Dependents" id="Dependents_no" style="height:30px;width:300px;margin-left:25px;margin-right:98px;">
+        <option value="0">0</option>
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3+</option>
+    </select>
+
+    <label for="Education_Status">Education : </label>
+    <select name="Education" id="Education_Status" style="height:30px;width:300px;margin-left:25px;">
+        <option value="1">Graduate</option>
+        <option value="0">Not Graduate</option>
+    </select><br><br>
+
+    <label for="Employment_Status" style="padding-left:35px;">Self Employed : </label>
+    <select name="Self_Employed" id="Employment_Status" style="height:30px;width:300px;margin-left:25px;margin-right:50px;">
+        <option value="1">Yes</option>
+        <option value="0">No</option>
+    </select>
+
+    <label for="Applicant_Income">Applicant Income :</label>
+    <input type="text" id="Applicant_Income" name="ApplicantIncome" style="height:30px;width:300px;margin-left:25px;" required><br><br>
+
+    <label for="Coapplicant_Income" style="padding-left:0px;">Coapplicant Income :</label>
+    <input type="text" id="Coapplicant_Income" name="CoapplicantIncome" style="height:30px;width:300px;margin-left:25px;margin-right:75px;" required>
+
+    <label for="Loan_Amount_Money">Loan Amount :</label>
+    <input type="text" id="Loan_Amount_Money" name="LoanAmount" style="height:30px;width:300px;margin-left:25px;" required><br><br>
+
+    <label for="Loan_Amount_Term_Days" style="padding-left:5px;">Loan Amount Term :</label>
+    <input type="text" id="Loan_Amount_Term_Days" name="Loan_Amount_Term" style="height:30px;width:300px;margin-left:25px;margin-right:75px;" required>
+
+    <label for="Credit_Status">Credit History : </label>
+    <select name="Credit_History" id="Credit_Status" style="height:30px;width:300px;margin-left:25px;">
+        <option value="1">1</option>
+        <option value="0">0</option>
+    </select><br><br>
+
+    <label for="Property_Area_Status" style="padding-left:40px;">Property Area : </label>
+    <select name="Property_Area" id="Property_Area_Status" style="height:30px;width:300px;margin-left:25px;">
+        <option value="0">Rural</option>
+        <option value="1">Semiurban</option>
+        <option value="2">Urban</option>
+    </select><br><br><br>
+
+    <input type="submit" class="pre_btn" value="MAKE PREDICTION" style="font-weight:bold;font-size:15px;color:white;width:1000px;height:50px;background-color:#4db8ff;border:1px solid #4db8ff">
+</form>
+<br><br>
+<div class="container" id="insights">
+    <table style="width:1200px;">
+        <tr>
+            <th style="width:500px;padding-left:50px;"><h2><b>SNS BARPLOT</b></h2></th>
+            <th style="width:500px;padding-left:50px;"><h2><b>ROC AUC</b></h2></th>
+        </tr>
+        <tr>
+            <th style="width:500px;padding-left:50px;"><h5><b>Barplot Comaprison</b></h5></th>
+            <th style="width:500px;padding-left:50px;"><h5><b>ROC AUC Score</b></h5></th>
+        </tr>
+        <tr>
+            <th style="padding-left:50px;padding-right:50px;"><p>The following  barplot shows the comparison for different machine learning models . Logistic Regression gives the best Accuracy .</p></th>
+            <th style="padding-left:50px;padding-right:50px;"><p>The following graph shows the ROC AUC Curve for different Machine Learning Models. Logistic Regression gives the best AUC.</p></th>
+        <br></tr>
+        <tr>
+            <th style="padding-top:20px;padding-left:20px;"><img src="static/mysite/images/BARPLOT.jpg"></th>
+            <th style="padding-top:20px;padding-left:40px;"><img src="static/mysite/images/ROC.jpg"></th>
+        </tr>
+    </table>
+</div>
+<br><br><br><br>
+<div class="jumbotron container-fluid" id="contact" style="color:white;padding-top:20px;padding-left:100px;background-color:#4040bf;">
+    <table style="width:1200px;padding:500px;">
+        <thead><h2><b>DEVELOPED BY : </b></h2></thead>
+        <tr>
+            <th><h4><b>SURAJ ANDHE</b></h4></th>
+            <th><h4><b>SHUBHAM NALAWADE</b></h4></th>
+            <th><h4><b>SIDDHESH PARAB</b></h4></th>
+        </tr>
+        <tr>
+            <th>Email Id : suraj.andhe91@gmail.com</th>
+            <th>Email Id : shubham.nalawade03122000@gmail.com</th>
+            <th>Email Id : parabsiddhesh95@gmail.com</th>
+        </tr>
+        <tr>
+            <th><a style="color:white;" href=" https://www.linkedin.com/in/suraj-andhe-124604209">LinkedIn</a>&emsp;<a style="color:white;" href="https://github.com/Suraj-043">Github</a>&emsp;<a style="color:white;" href="https://www.kaggle.com/surajandhe">Kaggle</a></th>
+            <th><a style="color:white;" href="https://www.linkedin.com/in/shubham-nalawade-43a04a199/">LinkedIn</a>&emsp;<a style="color:white;" href="https://github.com/Shubham03122000">Github</a>&emsp;<a style="color:white;" href="https://www.kaggle.com/shubhamnalawad775/account">Kaggle</a></th>
+            <th><a style="color:white;" href="https://www.linkedin.com/in/siddheshpparab">LinkedIn</a>&emsp;<a style="color:white;" href="https://github.com/SiddheshParab30">Github</a>&emsp;<a style="color:white;" href="https://www.kaggle.com/siddheshparab30/account">Kaggle</a></th>
+        </tr>
+    </table>
+</div>
+
+
+</body>
+</html>
